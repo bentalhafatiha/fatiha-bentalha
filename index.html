@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fatiha Bentalha — Art du Recyclage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Tajawal:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --sand: #f2ede4;
+  --ink: #1c1611;
+  --gold: #b8860b;
+  --gold-light: #d4a843;
+  --rust: #9b3a1a;
+  --sea: #2a5c6e;
+  --sea-light: #4a8fa3;
+  --cream: #faf7f2;
+  --warm-gray: #8a8278;
+  --line: rgba(184,134,11,0.2);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: 'Cormorant Garamond', serif;
+  overflow-x: hidden;
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 48px;
+  background: rgba(242,237,228,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+  transition: all 0.3s;
+}
+
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  color: var(--ink);
+  text-decoration: none;
+}
+.nav-logo em { font-style: italic; color: var(--gold); }
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+.nav-links a {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--warm-gray);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--gold); }
+
+.lang-switch {
+  display: flex;
+  gap: 8px;
+}
+.lang-btn {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  padding: 4px 10px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--warm-gray);
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 2px;
+}
+.lang-btn.active, .lang-btn:hover {
+  background: var(--gold);
+  color: white;
+  border-color: var(--gold);
+}
+
+/* ─── HERO ─── */
+#hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 140px 80px 80px 80px;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 28px;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.2s forwards;
+}
+
+.hero-name {
+  font-size: clamp(52px, 6vw, 88px);
+  font-weight: 300;
+  line-height: 1.0;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.4s forwards;
+}
+.hero-name .last {
+  font-style: italic;
+  color: var(--rust);
+}
+
+.hero-subtitle {
+  font-size: 20px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--warm-gray);
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.6s forwards;
+}
+
+.hero-quote {
+  font-size: 15px;
+  font-style: italic;
+  line-height: 1.7;
+  color: var(--ink);
+  border-left: 2px solid var(--gold);
+  padding-left: 20px;
+  max-width: 380px;
+  margin-bottom: 52px;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.8s forwards;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 16px;
+  opacity: 0;
+  animation: fadeUp 0.8s 1.0s forwards;
+}
+
+.btn-primary {
+  padding: 14px 32px;
+  background: var(--ink);
+  color: var(--cream);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid var(--ink);
+  transition: all 0.3s;
+}
+.btn-primary:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+.btn-secondary {
+  padding: 14px 32px;
+  background: transparent;
+  color: var(--ink);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid var(--line);
+  transition: all 0.3s;
+}
+.btn-secondary:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.hero-right {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-img-wrap {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--sea) 0%, #1a3a47 50%, #0d2530 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Decorative pattern instead of missing image */
+.hero-pattern {
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(circle at 30% 40%, rgba(184,134,11,0.3) 0%, transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(155,58,26,0.2) 0%, transparent 40%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-art-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 120px;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(255,255,255,0.06);
+  letter-spacing: -0.03em;
+  text-align: center;
+  line-height: 1;
+  user-select: none;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.hero-overlay-text {
+  position: absolute;
+  bottom: 48px;
+  left: 40px;
+  right: 40px;
+}
+.hero-overlay-text p {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.hero-overlay-text h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(255,255,255,0.85);
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 32px;
+  left: 80px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  opacity: 0;
+  animation: fadeUp 0.8s 1.2s forwards;
+}
+.hero-scroll span {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  color: var(--warm-gray);
+  text-transform: uppercase;
+}
+.scroll-line {
+  width: 40px;
+  height: 1px;
+  background: var(--gold-light);
+  animation: expandLine 2s 1.5s ease-out forwards;
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+/* ─── SECTION BASE ─── */
+section {
+  padding: 120px 0;
+  position: relative;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+.section-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 16px;
+}
+.section-title {
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 300;
+  line-height: 1.1;
+}
+.section-title em { font-style: italic; color: var(--rust); }
+.section-line {
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+  margin: 24px auto 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+/* ─── BIO ─── */
+#bio {
+  background: var(--sand);
+}
+
+.bio-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.bio-left {}
+
+.bio-intro {
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--ink);
+  margin-bottom: 32px;
+}
+
+.bio-text {
+  font-size: 17px;
+  line-height: 1.9;
+  color: #4a4540;
+  margin-bottom: 24px;
+}
+
+.bio-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 48px;
+  padding-top: 48px;
+  border-top: 1px solid var(--line);
+}
+
+.stat-item {}
+.stat-num {
+  font-size: 40px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.stat-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--warm-gray);
+}
+
+.bio-right {
+  position: sticky;
+  top: 120px;
+}
+
+.bio-quote-card {
+  background: var(--ink);
+  color: var(--cream);
+  padding: 48px 40px;
+  margin-bottom: 32px;
+  position: relative;
+  overflow: hidden;
+}
+.bio-quote-card::before {
+  content: '"';
+  position: absolute;
+  top: -20px;
+  left: 24px;
+  font-size: 180px;
+  font-style: italic;
+  color: rgba(184,134,11,0.15);
+  line-height: 1;
+  font-family: 'Cormorant Garamond', serif;
+}
+.bio-quote-card p {
+  font-size: 18px;
+  font-style: italic;
+  line-height: 1.7;
+  position: relative;
+  z-index: 1;
+}
+.bio-quote-card cite {
+  display: block;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--gold-light);
+  margin-top: 20px;
+  font-style: normal;
+}
+
+.bio-technique {
+  background: white;
+  border: 1px solid var(--line);
+  padding: 32px;
+}
+.bio-technique h4 {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+.technique-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.technique-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  padding: 6px 14px;
+  border: 1px solid var(--line);
+  color: var(--warm-gray);
+  border-radius: 2px;
+}
+
+/* ─── ŒUVRES ─── */
+#oeuvres {
+  background: var(--cream);
+}
+
+.oeuvres-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-bottom: 60px;
+}
+
+.oeuvre-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 4/5;
+  background: var(--sea);
+}
+
+.oeuvre-card:nth-child(1) { background: linear-gradient(145deg, #1a4a5e, #0d2d3d); }
+.oeuvre-card:nth-child(2) { background: linear-gradient(145deg, #3d2010, #6b3820); }
+.oeuvre-card:nth-child(3) { background: linear-gradient(145deg, #2a3d20, #4a6830); }
+.oeuvre-card:nth-child(4) { background: linear-gradient(145deg, #3d3020, #6b5530); }
+.oeuvre-card:nth-child(5) { background: linear-gradient(145deg, #1a1a3a, #2d2d5e); }
+.oeuvre-card:nth-child(6) { background: linear-gradient(145deg, #3a1a1a, #5e2d2d); }
+
+.oeuvre-pattern {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.oeuvre-pattern::before {
+  content: attr(data-symbol);
+  font-size: 80px;
+  opacity: 0.12;
+  transition: opacity 0.4s, transform 0.4s;
+}
+.oeuvre-card:hover .oeuvre-pattern::before {
+  opacity: 0.25;
+  transform: scale(1.15) rotate(5deg);
+}
+
+.oeuvre-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 28px 24px;
+  transform: translateY(8px);
+  transition: transform 0.4s;
+}
+.oeuvre-card:hover .oeuvre-overlay { transform: translateY(0); }
+
+.oeuvre-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  color: var(--gold-light);
+  margin-bottom: 6px;
+}
+.oeuvre-title {
+  font-size: 22px;
+  font-weight: 300;
+  font-style: italic;
+  color: white;
+  margin-bottom: 4px;
+}
+.oeuvre-info {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.5);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.oeuvre-price {
+  color: var(--gold-light);
+  font-weight: 400;
+}
+
+.oeuvres-note {
+  text-align: center;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--warm-gray);
+}
+
+/* ─── EXPOSITIONS ─── */
+#expositions {
+  background: var(--ink);
+  color: var(--cream);
+}
+#expositions .section-title { color: var(--cream); }
+
+.expo-list {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.expo-item {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 40px;
+  padding: 40px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  transition: all 0.3s;
+}
+.expo-item:last-child { border-bottom: none; }
+.expo-item:hover { padding-left: 12px; }
+
+.expo-year {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 48px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--gold);
+  line-height: 1;
+  padding-top: 4px;
+}
+
+.expo-content {}
+.expo-event {
+  font-size: 22px;
+  font-weight: 300;
+  color: var(--cream);
+  margin-bottom: 6px;
+}
+.expo-lieu {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--gold-light);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.expo-desc {
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.5);
+}
+
+/* ─── MÉDIAS ─── */
+#medias {
+  background: var(--sand);
+}
+
+.medias-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 60px;
+}
+
+.media-card {
+  background: white;
+  border: 1px solid var(--line);
+  padding: 36px 32px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+.media-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--gold);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.3s;
+}
+.media-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.08); }
+.media-card:hover::before { transform: scaleY(1); }
+
+.media-source {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.media-type {
+  display: inline-block;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  padding: 3px 10px;
+  border: 1px solid var(--line);
+  color: var(--warm-gray);
+  border-radius: 2px;
+  margin-bottom: 16px;
+}
+.media-title {
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.4;
+  margin-bottom: 12px;
+  color: var(--ink);
+}
+.media-date {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  color: var(--warm-gray);
+  letter-spacing: 0.1em;
+}
+.media-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--sea);
+  text-decoration: none;
+  margin-top: 16px;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.media-link:hover { color: var(--gold); }
+
+/* ─── SOCIAL ─── */
+.social-strip {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.social-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border: 1px solid var(--line);
+  text-decoration: none;
+  color: var(--ink);
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: all 0.3s;
+  background: white;
+}
+.social-btn:hover {
+  background: var(--ink);
+  color: var(--cream);
+  border-color: var(--ink);
+}
+.social-icon { font-size: 16px; }
+
+/* ─── LIVRES ─── */
+#livres {
+  background: var(--cream);
+}
+
+.livres-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+}
+
+.livre-card {
+  display: flex;
+  gap: 32px;
+  padding: 40px;
+  border: 1px solid var(--line);
+  background: white;
+  transition: all 0.3s;
+}
+.livre-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.06); }
+
+.livre-cover {
+  width: 90px;
+  min-width: 90px;
+  aspect-ratio: 2/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+}
+.livre-cover.green { background: linear-gradient(145deg, #3a6030, #5a8a40); }
+.livre-cover.blue  { background: linear-gradient(145deg, #1a3a5e, #2a5a8e); }
+
+.livre-info {}
+.livre-tag {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.livre-title {
+  font-size: 20px;
+  font-weight: 400;
+  font-style: italic;
+  margin-bottom: 8px;
+  color: var(--ink);
+}
+.livre-author {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--warm-gray);
+  margin-bottom: 12px;
+}
+.livre-desc {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #4a4540;
+}
+.livre-meta {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  gap: 16px;
+}
+.livre-meta span {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--warm-gray);
+}
+.livre-meta strong {
+  color: var(--gold);
+  font-weight: 400;
+}
+
+/* ─── CONTACT ─── */
+#contact {
+  background: var(--ink);
+  color: var(--cream);
+  text-align: center;
+}
+#contact .section-title { color: var(--cream); }
+#contact .section-tag { color: var(--gold-light); }
+
+.contact-intro {
+  font-size: 18px;
+  font-style: italic;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.6);
+  max-width: 500px;
+  margin: 0 auto 60px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 800px;
+  margin: 0 auto 60px;
+}
+.contact-item {
+  padding: 32px 24px;
+  border: 1px solid rgba(255,255,255,0.08);
+  text-align: center;
+  transition: all 0.3s;
+}
+.contact-item:hover {
+  border-color: var(--gold);
+  background: rgba(184,134,11,0.05);
+}
+.contact-icon { font-size: 28px; margin-bottom: 12px; }
+.contact-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 8px;
+}
+.contact-value {
+  font-size: 15px;
+  color: rgba(255,255,255,0.7);
+  font-style: italic;
+}
+.contact-value a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.contact-value a:hover { color: var(--gold-light); }
+
+/* ─── FOOTER ─── */
+footer {
+  background: #0e0b08;
+  padding: 32px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+.footer-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.1em;
+}
+.footer-copy {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.2);
+}
+
+/* ─── ARABIC SECTION (RTL) ─── */
+.ar-text {
+  font-family: 'Tajawal', sans-serif;
+  direction: rtl;
+  text-align: right;
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes expandLine {
+  to { transform: scaleX(1); }
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  #hero { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .hero-left { padding: 120px 32px 60px; }
+  .bio-grid { grid-template-columns: 1fr; gap: 40px; }
+  .oeuvres-grid { grid-template-columns: repeat(2, 1fr); }
+  .medias-grid { grid-template-columns: 1fr; }
+  .livres-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; max-width: 400px; }
+  nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  .container { padding: 0 24px; }
+  section { padding: 80px 0; }
+}
+
+/* Language display */
+[data-lang] { display: none; }
+[data-lang].lang-active { display: block; }
+span[data-lang].lang-active { display: inline; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">Fatiha <em>Bentalha</em></a>
+  <ul class="nav-links">
+    <li><a href="#bio" class="nav-link" data-fr="Biographie" data-ar="السيرة" data-en="About">Biographie</a></li>
+    <li><a href="#oeuvres" class="nav-link" data-fr="Œuvres" data-ar="الأعمال" data-en="Works">Œuvres</a></li>
+    <li><a href="#expositions" class="nav-link" data-fr="Expositions" data-ar="معارض" data-en="Exhibitions">Expositions</a></li>
+    <li><a href="#medias" class="nav-link" data-fr="Médias" data-ar="إعلام" data-en="Press">Médias</a></li>
+    <li><a href="#livres" class="nav-link" data-fr="Livres" data-ar="كتب" data-en="Books">Livres</a></li>
+    <li><a href="#contact" class="nav-link" data-fr="Contact" data-ar="تواصل" data-en="Contact">Contact</a></li>
+  </ul>
+  <div class="lang-switch">
+    <button class="lang-btn active" onclick="setLang('fr')">FR</button>
+    <button class="lang-btn" onclick="setLang('ar')">ع</button>
+    <button class="lang-btn" onclick="setLang('en')">EN</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-tag">
+      <span data-lang="fr" class="lang-active">Plasticienne Marocaine · Art du Recyclage</span>
+      <span data-lang="ar">فنانة تشكيلية مغربية · فن التدوير</span>
+      <span data-lang="en">Moroccan Visual Artist · Recycling Art</span>
+    </div>
+    <h1 class="hero-name">
+      Fatiha<br><span class="last">Bentalha</span>
+    </h1>
+    <p class="hero-subtitle">
+      <span data-lang="fr" class="lang-active">من النفايات، نصنع الجمال</span>
+      <span data-lang="ar">من النفايات، نصنع الجمال ♻️</span>
+      <span data-lang="en">From Waste, We Create Beauty</span>
+    </p>
+    <blockquote class="hero-quote">
+      <span data-lang="fr" class="lang-active">« Je regarde les objets et les imagine dans une autre fonction. Mon objectif est de les transformer en fleurs, en personnages et en scènes de notre quotidien ou de notre passé. »</span>
+      <span data-lang="ar" class="ar-text">« أتأمل الأشياء وأتخيلها في وظيفة أخرى. هدفي تحويلها إلى زهور وشخصيات ومشاهد من حياتنا اليومية أو ماضينا. »</span>
+      <span data-lang="en">« I look at objects and imagine them in another function. My goal is to transform them into flowers, characters and scenes from our daily life or past. »</span>
+    </blockquote>
+    <div class="hero-ctas">
+      <a href="#oeuvres" class="btn-primary">
+        <span data-lang="fr" class="lang-active">Voir les Œuvres</span>
+        <span data-lang="ar">مشاهدة الأعمال</span>
+        <span data-lang="en">View Works</span>
+      </a>
+      <a href="#contact" class="btn-secondary">
+        <span data-lang="fr" class="lang-active">Me Contacter</span>
+        <span data-lang="ar">تواصل معي</span>
+        <span data-lang="en">Get in Touch</span>
+      </a>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span data-lang="fr" class="lang-active">Découvrir</span>
+      <span data-lang="ar">اكتشف</span>
+      <span data-lang="en">Explore</span>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img-wrap">
+      <div class="hero-pattern">
+        <div class="hero-art-text">♻</div>
+      </div>
+      <div class="hero-overlay-text">
+        <p>Œuvre phare · Featured Work</p>
+        <h3>Poissons de Corail</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BIO -->
+<section id="bio">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">
+        <span data-lang="fr" class="lang-active">Biographie</span>
+        <span data-lang="ar">السيرة الذاتية</span>
+        <span data-lang="en">Biography</span>
+      </span>
+      <h2 class="section-title">
+        <span data-lang="fr" class="lang-active">L'artiste qui donne<br>une <em>seconde vie</em> aux déchets</span>
+        <span data-lang="ar" class="ar-text">الفنانة التي تمنح<br><em>حياة ثانية</em> للنفايات</span>
+        <span data-lang="en">The artist who gives<br><em>second life</em> to waste</span>
+      </h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="bio-grid">
+      <div class="bio-left reveal">
+        <p class="bio-intro">
+          <span data-lang="fr" class="lang-active">Fatiha Bentalha est une plasticienne marocaine basée à Rabat, pionnière de l'art du recyclage au niveau national et international.</span>
+          <span data-lang="ar" class="ar-text">فتيحة بنطالحة فنانة تشكيلية مغربية مقيمة بالرباط، رائدة فن التدوير على المستوى الوطني والدولي.</span>
+          <span data-lang="en">Fatiha Bentalha is a Moroccan visual artist based in Rabat, a pioneer of recycling art at the national and international level.</span>
+        </p>
+        <p class="bio-text">
+          <span data-lang="fr" class="lang-active">Depuis son enfance, elle accompagnait son père à la plage et collectait les déchets rejetés par la mer. Cette fascination précoce pour les objets abandonnés allait devenir le fondement de toute son œuvre artistique.</span>
+          <span data-lang="ar" class="ar-text">منذ طفولتها، كانت ترافق والدها إلى الشاطئ وتجمع النفايات التي يلفظها البحر. هذا الولع المبكر بالأشياء المهجورة أصبح أساس كل مسيرتها الفنية.</span>
+          <span data-lang="en">Since childhood, she accompanied her father to the beach and collected debris washed up by the sea. This early fascination with discarded objects would become the foundation of her entire artistic work.</span>
+        </p>
+        <p class="bio-text">
+          <span data-lang="fr" class="lang-active">Professeure de Tarbiya Tachkiliya (éducation plastique), elle concilie sa passion artistique avec un engagement écologique profond. Elle anime régulièrement des ateliers pour sensibiliser les enfants à la protection de l'environnement par l'art.</span>
+          <span data-lang="ar" class="ar-text">أستاذة للتربية التشكيلية، تجمع بين شغفها الفني والتزامها البيئي العميق. تنظم بانتظام ورشات لتحسيس الأطفال بحماية البيئة عبر الفن.</span>
+          <span data-lang="en">A Tarbiya Tachkiliya teacher, she combines her artistic passion with a deep ecological commitment, regularly running workshops to raise children's environmental awareness through art.</span>
+        </p>
+        <div class="bio-stats">
+          <div class="stat-item">
+            <div class="stat-num">2</div>
+            <div class="stat-label">
+              <span data-lang="fr" class="lang-active">Livres publiés</span>
+              <span data-lang="ar">كتابان منشوران</span>
+              <span data-lang="en">Books published</span>
+            </div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">5+</div>
+            <div class="stat-label">
+              <span data-lang="fr" class="lang-active">Médias internationaux</span>
+              <span data-lang="ar">وسائل إعلام دولية</span>
+              <span data-lang="en">International media</span>
+            </div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">50k</div>
+            <div class="stat-label">
+              <span data-lang="fr" class="lang-active">MAD par œuvre majeure</span>
+              <span data-lang="ar">درهم للعمل الرئيسي</span>
+              <span data-lang="en">MAD per major work</span>
+            </div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">3D</div>
+            <div class="stat-label">
+              <span data-lang="fr" class="lang-active">Technique exclusive</span>
+              <span data-lang="ar">تقنية حصرية</span>
+              <span data-lang="en">Exclusive technique</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bio-right reveal reveal-delay-2">
+        <div class="bio-quote-card">
+          <p><span data-lang="fr" class="lang-active">« Un enfant sensibilisé à la nécessité de préserver l'environnement est un adulte gagné à la cause de l'environnement. »</span>
+          <span data-lang="ar" class="ar-text">« الطفل الذي يدرك ضرورة الحفاظ على البيئة سيصبح بالغاً منخرطاً في خدمة قضية البيئة. »</span>
+          <span data-lang="en">« A child sensitized to the need to preserve the environment is an adult won over to the environmental cause. »</span></p>
+          <cite>— Fatiha Bentalha</cite>
+        </div>
+        <div class="bio-technique">
+          <h4>
+            <span data-lang="fr" class="lang-active">Matériaux &amp; Technique</span>
+            <span data-lang="ar">المواد والتقنية</span>
+            <span data-lang="en">Materials &amp; Technique</span>
+          </h4>
+          <div class="technique-tags">
+            <span class="technique-tag">Plastique recyclé</span>
+            <span class="technique-tag">Chutes de tissu</span>
+            <span class="technique-tag">Métal récupéré</span>
+            <span class="technique-tag">Bois flotté</span>
+            <span class="technique-tag">Déchets marins</span>
+            <span class="technique-tag">Technique 3D</span>
+            <span class="technique-tag">Mixed media</span>
+            <span class="technique-tag">Upcycling</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ŒUVRES -->
+<section id="oeuvres">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">
+        <span data-lang="fr" class="lang-active">Catalogue</span>
+        <span data-lang="ar">الأعمال الفنية</span>
+        <span data-lang="en">Works</span>
+      </span>
+      <h2 class="section-title">
+        <span data-lang="fr" class="lang-active">Œuvres <em>Majeures</em></span>
+        <span data-lang="ar">الأعمال <em>الرئيسية</em></span>
+        <span data-lang="en"><em>Major</em> Works</span>
+      </h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="oeuvres-grid">
+      <div class="oeuvre-card reveal">
+        <div class="oeuvre-pattern" data-symbol="🐟"></div>
+        <div class="oeuvre-overlay">
+          <div class="oeuvre-num">001 · 2020</div>
+          <div class="oeuvre-title">Poissons de Corail</div>
+          <div class="oeuvre-info"><span>180 × 130 cm · Mixte</span><span class="oeuvre-price">50 000 MAD</span></div>
+        </div>
+      </div>
+      <div class="oeuvre-card reveal reveal-delay-1">
+        <div class="oeuvre-pattern" data-symbol="🏺"></div>
+        <div class="oeuvre-overlay">
+          <div class="oeuvre-num">002 · 2020</div>
+          <div class="oeuvre-title">Le Souk</div>
+          <div class="oeuvre-info"><span>180 × 130 cm · Mixte</span><span class="oeuvre-price">50 000 MAD</span></div>
+        </div>
+      </div>
+      <div class="oeuvre-card reveal reveal-delay-2">
+        <div class="oeuvre-pattern" data-symbol="🕌"></div>
+        <div class="oeuvre-overlay">
+          <div class="oeuvre-num">003 · 2020</div>
+          <div class="oeuvre-title">Vers la Mosquée</div>
+          <div class="oeuvre-info"><span>110 × 110 cm · Mixte</span><span class="oeuvre-price">Sur demande</span></div>
+        </div>
+      </div>
+      <div class="oeuvre-card reveal reveal-delay-1">
+        <div class="oeuvre-pattern" data-symbol="🌊"></div>
+        <div class="oeuvre-overlay">
+          <div class="oeuvre-num">004</div>
+          <div class="oeuvre-title">Vie Marine</div>
+          <div class="oeuvre-info"><span>Art du recyclage marin</span><span class="oeuvre-price">Sur demande</span></div>
+        </div>
+      </div>
+      <div class="oeuvre-card reveal reveal-delay-2">
+        <div class="oeuvre-pattern" data-symbol="🏔"></div>
+        <div class="oeuvre-overlay">
+          <div class="oeuvre-num">005</div>
+          <div class="oeuvre-title">Ourika</div>
+          <div class="oeuvre-info"><span>Paysage recyclé</span><span class="oeuvre-price">Sur demande</span></div>
+        </div>
+      </div>
+      <div class="oeuvre-card reveal reveal-delay-3">
+        <div class="oeuvre-pattern" data-symbol="♻"></div>
+        <div class="oeuvre-overlay">
+          <div class="oeuvre-num">006 · 2020</div>
+          <div class="oeuvre-title">Récupération Artistique</div>
+          <div class="oeuvre-info"><span>140 × 130 cm · Mixte</span><span class="oeuvre-price">Sur demande</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="oeuvres-note reveal">
+      <span data-lang="fr" class="lang-active">+ 9 œuvres disponibles · Contact pour prix et disponibilité</span>
+      <span data-lang="ar">+ 9 أعمال أخرى متاحة · تواصل للأسعار والتوفر</span>
+      <span data-lang="en">+ 9 more works available · Contact for pricing and availability</span>
+    </p>
+  </div>
+</section>
+
+<!-- EXPOSITIONS -->
+<section id="expositions">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">
+        <span data-lang="fr" class="lang-active">Parcours</span>
+        <span data-lang="ar">المسيرة</span>
+        <span data-lang="en">Journey</span>
+      </span>
+      <h2 class="section-title">
+        <span data-lang="fr" class="lang-active">Expositions &<br><em>Événements</em></span>
+        <span data-lang="ar">المعارض<br>و<em>الفعاليات</em></span>
+        <span data-lang="en">Exhibitions &<br><em>Events</em></span>
+      </h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="expo-list">
+      <div class="expo-item reveal">
+        <div class="expo-year">2020</div>
+        <div class="expo-content">
+          <div class="expo-event">
+            <span data-lang="fr" class="lang-active">5e Forum mondial ONU-Femmes</span>
+            <span data-lang="ar">المنتدى العالمي الخامس لهيئة الأمم للمرأة</span>
+            <span data-lang="en">5th UN Women Global Forum</span>
+          </div>
+          <div class="expo-lieu">Rabat, Maroc · 26–28 Février 2020</div>
+          <div class="expo-desc">
+            <span data-lang="fr" class="lang-active">Exposition à l'occasion du Forum pour des villes et espaces publics sûrs. Thème : la femme comme symbole de tout développement.</span>
+            <span data-lang="ar">معرض بمناسبة منتدى المدن والفضاءات العامة الآمنة. الموضوع: المرأة رمزاً للتنمية.</span>
+            <span data-lang="en">Exhibition at the Forum for Safe Cities and Public Spaces. Theme: women as a symbol of development.</span>
+          </div>
+        </div>
+      </div>
+      <div class="expo-item reveal reveal-delay-1">
+        <div class="expo-year">2021</div>
+        <div class="expo-content">
+          <div class="expo-event">
+            <span data-lang="fr" class="lang-active">Reportage Al Aoula / SNRT</span>
+            <span data-lang="ar">تقرير القناة الأولى / SNRT</span>
+            <span data-lang="en">Al Aoula / SNRT Documentary</span>
+          </div>
+          <div class="expo-lieu">Télévision Nationale · Mai 2021</div>
+          <div class="expo-desc">
+            <span data-lang="fr" class="lang-active">Reportage de la 1ère chaîne nationale marocaine sur son œuvre et son engagement écologique.</span>
+            <span data-lang="ar">تقرير القناة الوطنية الأولى عن أعمالها والتزامها البيئي.</span>
+            <span data-lang="en">Report by Morocco's national channel on her work and ecological commitment.</span>
+          </div>
+        </div>
+      </div>
+      <div class="expo-item reveal reveal-delay-2">
+        <div class="expo-year">Int.</div>
+        <div class="expo-content">
+          <div class="expo-event">
+            <span data-lang="fr" class="lang-active">Projet Jeanne Barret</span>
+            <span data-lang="ar">مشروع جان باريت</span>
+            <span data-lang="en">Jeanne Barret Project</span>
+          </div>
+          <div class="expo-lieu">Montpellier, France</div>
+          <div class="expo-desc">
+            <span data-lang="fr" class="lang-active">Collaboration artistique internationale autour de la protection des océans. Partenariat franco-marocain.</span>
+            <span data-lang="ar">تعاون فني دولي حول حماية المحيطات. شراكة مغربية-فرنسية.</span>
+            <span data-lang="en">International artistic collaboration around ocean protection. Franco-Moroccan partnership.</span>
+          </div>
+        </div>
+      </div>
+      <div class="expo-item reveal reveal-delay-3">
+        <div class="expo-year">Éco</div>
+        <div class="expo-content">
+          <div class="expo-event">
+            <span data-lang="fr" class="lang-active">Programme Éco-écoles</span>
+            <span data-lang="ar">برنامج المدارس البيئية</span>
+            <span data-lang="en">Eco-Schools Programme</span>
+          </div>
+          <div class="expo-lieu">Maroc · Fondation Mohammed VI</div>
+          <div class="expo-desc">
+            <span data-lang="fr" class="lang-active">Ateliers artistiques en milieu scolaire. Sensibilisation des élèves à l'environnement par l'art du recyclage.</span>
+            <span data-lang="ar">ورشات فنية في الوسط المدرسي. تحسيس التلاميذ بالبيئة عبر فن التدوير.</span>
+            <span data-lang="en">Artistic workshops in schools. Raising students' awareness through recycling art.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MÉDIAS -->
+<section id="medias">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">
+        <span data-lang="fr" class="lang-active">Presse & Médias</span>
+        <span data-lang="ar">الصحافة والإعلام</span>
+        <span data-lang="en">Press & Media</span>
+      </span>
+      <h2 class="section-title">
+        <span data-lang="fr" class="lang-active">Elle parle d'elle dans<br>les <em>Médias</em></span>
+        <span data-lang="ar">حضورها في<br><em>الإعلام</em></span>
+        <span data-lang="en">As seen in the<br><em>Media</em></span>
+      </h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="medias-grid">
+      <div class="media-card reveal">
+        <div class="media-source">MAP Express</div>
+        <div class="media-type">Presse officielle</div>
+        <div class="media-title">
+          <span data-lang="fr" class="lang-active">Fatiha Bentalha, une égérie du recyclage artistique qui offre une seconde vie aux déchets</span>
+          <span data-lang="ar">فتيحة بنطالحة، رائدة فن التدوير التي تمنح حياة ثانية للنفايات</span>
+          <span data-lang="en">Fatiha Bentalha, a recycling art icon who gives second life to waste</span>
+        </div>
+        <div class="media-date">Agence Maghreb Arabe Presse · Par Nadia El Hachimi</div>
+        <a href="https://www.mapexpress.ma" target="_blank" class="media-link">↗ Lire l'article</a>
+      </div>
+      <div class="media-card reveal reveal-delay-1">
+        <div class="media-source">هسبريس · Hespress</div>
+        <div class="media-type">Presse arabophone</div>
+        <div class="media-title">
+          <span data-lang="fr" class="lang-active">Fatiha Bentalha, des doigts créatifs transformant les déchets en tableaux artistiques</span>
+          <span data-lang="ar">فتيحة بن طلحة.. أنامل مبدعة تحول نفايات صلبة إلى لوحات فنية</span>
+          <span data-lang="en">Fatiha Bentalha, creative fingers transforming solid waste into art</span>
+        </div>
+        <div class="media-date">هسبريس · أمال كنين · 29 يناير 2018</div>
+        <a href="https://hespress.com" target="_blank" class="media-link">↗ قراءة المقال</a>
+      </div>
+      <div class="media-card reveal reveal-delay-2">
+        <div class="media-source">Al Aoula · القناة الأولى</div>
+        <div class="media-type">Télévision nationale</div>
+        <div class="media-title">
+          <span data-lang="fr" class="lang-active">Fatiha Bentalha, l'artiste qui se met au service de l'écologie</span>
+          <span data-lang="ar">فتيحة بنطالحة، الفنانة في خدمة البيئة</span>
+          <span data-lang="en">Fatiha Bentalha, the artist who serves ecology</span>
+        </div>
+        <div class="media-date">SNRT / Al Aoula · Mai 2021</div>
+        <a href="https://www.youtube.com/watch?v=wmC1vzR8O-4" target="_blank" class="media-link">↗ Voir le reportage</a>
+      </div>
+      <div class="media-card reveal reveal-delay-3">
+        <div class="media-source">VosArtistes.com</div>
+        <div class="media-type">Galerie en ligne</div>
+        <div class="media-title">
+          <span data-lang="fr" class="lang-active">Pionnière de l'art du recyclage au Maroc — Galerie officielle</span>
+          <span data-lang="ar">رائدة فن التدوير بالمغرب — معرض رسمي</span>
+          <span data-lang="en">Pioneer of recycling art in Morocco — Official gallery</span>
+        </div>
+        <div class="media-date">Décembre 2020 · 5 œuvres · 2091+ vues</div>
+        <a href="https://vosartistes.com/artiste/bentalha-fatiha/" target="_blank" class="media-link">↗ Voir la galerie</a>
+      </div>
+    </div>
+    <div class="social-strip reveal">
+      <a href="https://www.instagram.com/bentalhafatiha/" target="_blank" class="social-btn">
+        <span class="social-icon">📸</span> Instagram @bentalhafatiha
+      </a>
+      <a href="https://www.youtube.com/@bentalhafatiha2444" target="_blank" class="social-btn">
+        <span class="social-icon">▶</span> YouTube Channel
+      </a>
+      <a href="https://www.facebook.com/p/Bentalha-Fatiha-100007398886348/" target="_blank" class="social-btn">
+        <span class="social-icon">📘</span> Facebook
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- LIVRES -->
+<section id="livres">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">
+        <span data-lang="fr" class="lang-active">Publications</span>
+        <span data-lang="ar">المنشورات</span>
+        <span data-lang="en">Publications</span>
+      </span>
+      <h2 class="section-title">
+        <span data-lang="fr" class="lang-active">Livres &<br><em>Publications</em></span>
+        <span data-lang="ar">الكتب<br>و<em>المنشورات</em></span>
+        <span data-lang="en">Books &<br><em>Publications</em></span>
+      </h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="livres-grid">
+      <div class="livre-card reveal">
+        <div class="livre-cover green">📗</div>
+        <div class="livre-info">
+          <div class="livre-tag">Livre-jeunesse · Français</div>
+          <div class="livre-title">L'art du recyclage</div>
+          <div class="livre-author">Fatiha Bentalha — Écrit &amp; illustré</div>
+          <div class="livre-desc">
+            <span data-lang="fr" class="lang-active">Un beau livre-jeunesse qui apprend aux enfants à créer des œuvres d'art en utilisant les déchets rejetés par la mer ou glanés ici et là.</span>
+            <span data-lang="ar">كتاب جميل للأطفال يعلمهم خلق أعمال فنية من النفايات الملتقطة من البحر أو من محيطهم.</span>
+            <span data-lang="en">A beautiful children's book that teaches kids to create artworks using waste from the sea or collected anywhere.</span>
+          </div>
+          <div class="livre-meta">
+            <span><strong>2019</strong> · Éditions Nouiga</span>
+            <span>Disponible: Almouggar.com</span>
+          </div>
+        </div>
+      </div>
+      <div class="livre-card reveal reveal-delay-2">
+        <div class="livre-cover blue">📘</div>
+        <div class="livre-info">
+          <div class="livre-tag">كتاب تربوي · Arabe</div>
+          <div class="livre-title">التربية البيئية وفن التدوير</div>
+          <div class="livre-author">فتيحة بنطالحة — تأليف</div>
+          <div class="livre-desc">
+            <span data-lang="fr" class="lang-active">Ouvrage sur l'éducation environnementale par l'art du recyclage, bénéficiant du soutien officiel du Ministère de la Culture du Maroc.</span>
+            <span data-lang="ar">كتاب في التربية البيئية عبر فن التدوير، بدعم رسمي من وزارة الثقافة المغربية.</span>
+            <span data-lang="en">A book on environmental education through recycling art, with official support from the Moroccan Ministry of Culture.</span>
+          </div>
+          <div class="livre-meta">
+            <span><strong>2020</strong> · وزارة الثقافة</span>
+            <span>دعم رسمي</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">
+        <span data-lang="fr" class="lang-active">Contact</span>
+        <span data-lang="ar">تواصل</span>
+        <span data-lang="en">Contact</span>
+      </span>
+      <h2 class="section-title">
+        <span data-lang="fr" class="lang-active">Acquérir une <em>œuvre</em><br>ou collaborer</span>
+        <span data-lang="ar">اقتناء <em>عمل فني</em><br>أو التعاون</span>
+        <span data-lang="en">Acquire a <em>work</em><br>or collaborate</span>
+      </h2>
+      <div class="section-line"></div>
+    </div>
+    <p class="contact-intro reveal">
+      <span data-lang="fr" class="lang-active">Pour toute demande d'acquisition, exposition, collaboration ou presse, n'hésitez pas à prendre contact.</span>
+      <span data-lang="ar">لأي طلب اقتناء، معرض، تعاون أو صحافة، لا تترددوا في التواصل.</span>
+      <span data-lang="en">For any acquisition, exhibition, collaboration or press inquiry, feel free to get in touch.</span>
+    </p>
+    <div class="contact-grid reveal">
+      <div class="contact-item">
+        <div class="contact-icon">📸</div>
+        <div class="contact-label">Instagram</div>
+        <div class="contact-value"><a href="https://www.instagram.com/bentalhafatiha/" target="_blank">@bentalhafatiha</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">▶</div>
+        <div class="contact-label">YouTube</div>
+        <div class="contact-value"><a href="https://www.youtube.com/@bentalhafatiha2444" target="_blank">@bentalhafatiha2444</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🖼</div>
+        <div class="contact-label">Galerie / Gallery</div>
+        <div class="contact-value"><a href="https://vosartistes.com/artiste/bentalha-fatiha/" target="_blank">VosArtistes.com</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Fatiha Bentalha — فتيحة بنطالحة</div>
+  <div class="footer-copy">© 2026 · Art du Recyclage · Rabat, Maroc</div>
+</footer>
+
+<script>
+// ─── LANGUAGE ───
+let currentLang = 'fr';
+
+function setLang(lang) {
+  currentLang = lang;
+
+  // Update buttons
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.remove('active');
+    if (btn.textContent.toLowerCase() === lang || (lang === 'ar' && btn.textContent === 'ع')) {
+      btn.classList.add('active');
+    }
+  });
+
+  // Update all lang elements
+  document.querySelectorAll('[data-lang]').forEach(el => {
+    if (el.getAttribute('data-lang') === lang) {
+      el.classList.add('lang-active');
+    } else {
+      el.classList.remove('lang-active');
+    }
+  });
+
+  // RTL for Arabic
+  document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+  document.documentElement.setAttribute('lang', lang);
+
+  // Update nav links
+  document.querySelectorAll('.nav-link').forEach(link => {
+    const text = link.getAttribute('data-' + lang);
+    if (text) link.textContent = text;
+  });
+}
+
+// ─── SCROLL REVEAL ───
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ─── NAV SCROLL ───
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  nav.style.boxShadow = window.scrollY > 20 ? '0 4px 40px rgba(0,0,0,0.08)' : 'none';
+});
+
+// Initialize FR as default
+setLang('fr');
+</script>
+</body>
+</html>
